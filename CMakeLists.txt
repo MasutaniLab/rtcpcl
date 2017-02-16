@@ -48,7 +48,7 @@ option(BUILD_RTCPCDSAVE "Build the RTCPCDSave component" TRUE)
 option(BUILD_RTCPCLNORMALS "Build the RTCPCLNormals component" TRUE)
 option(BUILD_RTCPCLOPENNI
     "Build the RTCPCLOpenNI component (PCL must have OpenNI support included)"
-    TRUE)
+    FALSE)
 option(BUILD_RTCPCLPASSTHROUGH "Build the RTCPCLPassthrough component" TRUE)
 option(BUILD_RTCPCLPLANESEGMENTATION
     "Build the RTCPCLPlaneSegmentation component" TRUE)
