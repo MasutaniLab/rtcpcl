@@ -18,8 +18,14 @@ ADD_CUSTOM_TARGET (uninstall "${CMAKE_COMMAND}" -P
     "${PROJECT_BINARY_DIR}/uninstall_target.cmake")
 
 # Get necessary dependency information
-list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules)
-find_package(OpenRTM 1 REQUIRED)
+find_package(OpenRTM HINTS /usr/lib64/openrtm-1.1/cmake)
+if(${OpenRTM_FOUND})
+  MESSAGE(STATUS "OpenRTM configuration Found")
+else(${OpenRTM_FOUND})
+  message(STATUS "Use cmake/Modules/FindOpenRTM.cmake in the project")
+  list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules)
+  find_package(OpenRTM REQUIRED)
+endif(${OpenRTM_FOUND})
 find_package(PCL 1 REQUIRED)
 find_package(Boost 1.42.0 REQUIRED regex)
 find_package(wxWidgets)
