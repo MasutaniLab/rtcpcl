@@ -60,6 +60,9 @@
 #include <ndds/ndds_cpp.h>
 #endif // defined(DDS_SUPPORT)
 
+#include <coil/TimeValue.h>
+#include <coil/Time.h>
+
 /*void write_diff(std::string title, uint64_t start, uint64_t end)
 {
     std::cerr << title << end - start << '\n';
@@ -69,9 +72,8 @@ namespace RTCPCL
 {
     uint64_t get_ts()
     {
-        struct timespec ts;
-        clock_gettime(CLOCK_REALTIME, &ts);
-        return ts.tv_sec * 1000000000 + ts.tv_nsec;
+        coil::TimeValue tv = coil::gettimeofday();
+        return tv.sec() * 1000000000 + tv.usec()*1000;
     }
 
 
