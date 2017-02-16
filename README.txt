@@ -1,7 +1,3 @@
-RTC:PCL for Windows
-Tested with only OpenRTM-aist-1.1.2 64bit, PCL 1.7.2,
-Visual Studio 2012 C++ 64bit, and Windows 10 64bit.
-
 RTC:PCL
 Copyright Geoffrey Biggs, 2011
 
