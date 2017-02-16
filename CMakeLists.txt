@@ -27,7 +27,7 @@ find_package(wxWidgets)
 # Compilation options
 #option(CORBA_SUPPORT "Include support for CORBA-based ports" TRUE)
 set(CORBA_SUPPORT TRUE)
-option(DDS_SUPPORT "Include support for DDS-based ports" TRUE)
+option(DDS_SUPPORT "Include support for DDS-based ports" FALSE)
 if(DDS_SUPPORT)
     find_package(DDS 4.5 REQUIRED)
     find_package(RTMDDS 1 REQUIRED)
