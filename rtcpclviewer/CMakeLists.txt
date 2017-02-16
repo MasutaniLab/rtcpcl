@@ -11,7 +11,7 @@ include_directories(${IDL_HEADERS_DIR} ${DEPS_INCLUDE_DIRS}
     ${Boost_INCLUDE_DIRS})
 add_library(${rtc_name} SHARED ${comp_srcs} ${IDL_TYPE_SOURCES})
 target_link_libraries(${rtc_name} rtcpcl_pointcloud_type ${DEPS_LIBRARIES})
-install(TARGETS ${rtc_name} LIBRARY DESTINATION ${LIB_INSTALL_DIR}
+install(TARGETS ${rtc_name} RUNTIME DESTINATION ${LIB_INSTALL_DIR}
     COMPONENT ${rtc_name})
 
 MAKE_STANDALONE(${PROJECT_SOURCE_DIR}/cmake/standalone.cpp.in

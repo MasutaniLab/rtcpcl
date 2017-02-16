@@ -26,7 +26,7 @@ set(pc_lib rtcpcl_pointcloud_type)
 add_library(${pc_lib} SHARED ${CORBA_IDL_ALL_SOURCES} ${DDS_IDL_ALL_SOURCES}
     pc_mgmt.cpp pc_traits.cpp)
 # Install the library so other components can use this type
-install(TARGETS ${pc_lib} LIBRARY DESTINATION ${LIB_INSTALL_DIR}
+install(TARGETS ${pc_lib} RUNTIME DESTINATION ${LIB_INSTALL_DIR}
     COMPONENT typelib)
 install(FILES ${CORBA_IDL_ALL_HEADERS} ${DDS_IDL_ALL_HEADERS}
     DESTINATION ${INCLUDE_INSTALL_DIR}/idl COMPONENT typelib)
