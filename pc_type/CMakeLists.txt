@@ -17,9 +17,7 @@ if(DDS_SUPPORT)
     set(IDL_HEADERS_DIR ${IDL_INCLUDE_DIR} ${DDS_IDL_HEADERS_DIR} PARENT_SCOPE)
 endif(DDS_SUPPORT)
 
-include_directories(${OPENRTM_INCLUDE_DIRS} ${PCL_INCLUDE_DIRS}
-    ${DDS_INCLUDE_DIRS} ${CORBA_IDL_HEADERS_DIR} ${DDS_IDL_HEADERS_DIR}
-    ${PROJECT_BINARY_DIR}/include)
+include_directories(${DEPS_INCLUDE_DIRS} ${CORBA_IDL_HEADERS_DIR})
 
 # Compile the point cloud type library
 set(pc_lib rtcpcl_pointcloud_type)
