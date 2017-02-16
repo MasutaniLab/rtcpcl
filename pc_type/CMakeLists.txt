@@ -26,6 +26,7 @@ set(pc_lib rtcpcl_pointcloud_type)
 link_directories(${DEPS_LIBRARY_DIRS})
 add_library(${pc_lib} SHARED ${CORBA_IDL_ALL_SOURCES} ${DDS_IDL_ALL_SOURCES}
     pc_mgmt.cpp pc_traits.cpp)
+target_link_libraries(${pc_lib} ${DEPS_LIBRARIES})
 # Install the library so other components can use this type
 install(TARGETS ${pc_lib} RUNTIME DESTINATION ${LIB_INSTALL_DIR}
     COMPONENT typelib)
