@@ -19,27 +19,28 @@ endmacro(CORBA_IDL_HEADER_OUTPUT)
 # ${_idl}_CORBA_SOURCES and appended to CORBA_IDL_ALL_SOURCES.
 macro(CORBA_COMPILE_INTF_IDL _idl_file _dir)
     get_filename_component(_idl "${_idl_file}" NAME_WE)
-    execute_process(COMMAND rtm-config --idlc OUTPUT_VARIABLE _idl_compiler
+    if(NOT WIN32)
+        execute_process(COMMAND rtm-config --prefix OUTPUT_VARIABLE OPENRTM_DIR
         OUTPUT_STRIP_TRAILING_WHITESPACE)
-    if(NOT _idl_compiler)
-        message(FATAL_ERROR "Could not find IDL compiler.")
-    endif(NOT _idl_compiler)
-    execute_process(COMMAND rtm-config --idlflags OUTPUT_VARIABLE _idlc_flags
+        execute_process(COMMAND rtm-config --idlflags OUTPUT_VARIABLE OPENRTM_IDLFLAGS
         OUTPUT_STRIP_TRAILING_WHITESPACE)
-    separate_arguments(_idlc_flags)
-    execute_process(COMMAND rtm-config --prefix OUTPUT_VARIABLE _rtm_prefix
+        separate_arguments(OPENRTM_IDLFLAGS)
+        execute_process(COMMAND rtm-config --idlc OUTPUT_VARIABLE OPENRTM_IDLC
         OUTPUT_STRIP_TRAILING_WHITESPACE)
-    set(RTM_IDL_DIR ${_rtm_prefix}/include/rtm/idl CACHE STRING
-        "Directory containing the OpenRTM-aist IDL files.")
+        set(_rtm_skelwrapper_command "rtm-skelwrapper")
+    else(NOT WIN32)
+        set(_rtm_skelwrapper_command "rtm-skelwrapper.py")
+    endif(NOT WIN32)
     set(_idl_srcs_var ${_idl}_CORBA_SRCS)
     CORBA_IDL_SOURCE_OUTPUTS(${_idl_srcs_var} ${_idl} ${_dir})
     set(_idl_hdrs_var ${_idl}_CORBA_HDRS)
     CORBA_IDL_HEADER_OUTPUT(${_idl_hdrs_var} ${_idl} ${_dir})
     file(MAKE_DIRECTORY ${_dir})
     add_custom_command(OUTPUT ${${_idl_srcs_var}} ${${_idl_hdrs_var}}
-        COMMAND ${_idl_compiler} ${_idlc_flags} -I${RTM_IDL_DIR} -C${_dir}
-        ${_idl_file}
-        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} DEPENDS ${_idl_file}
+        COMMAND python ${OPENRTM_DIR}/bin/${_rtm_skelwrapper_command} --include-dir= --skel-suffix=Skel --stub-suffix=Stub --idl-file=${_idl}.idl
+        COMMAND ${OPENRTM_IDLC} ${OPENRTM_IDLFLAGS} ${_idl_file}
+        WORKING_DIRECTORY ${CURRENT_BINARY_DIR}
+        DEPENDS ${_idl_file}
         COMMENT "Compiling ${_idl_file} for CORBA" VERBATIM)
     set(CORBA_IDL_ALL_SOURCES ${CORBA_IDL_ALL_SOURCES} ${${_idl_srcs_var}})
     set(CORBA_IDL_ALL_HEADERS ${CORBA_IDL_ALL_HEADERS} ${${_idl_hdrs_var}})
