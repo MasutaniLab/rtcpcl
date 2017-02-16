@@ -26,6 +26,7 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#define _EXPORTING
 #include <rtcpcl/pc_traits.h>
 
 
