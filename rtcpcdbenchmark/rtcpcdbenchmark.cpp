@@ -533,9 +533,8 @@ RTC::ReturnCode_t RTCPCDBenchmark::do_pointer_latency()
 
 uint64_t RTCPCDBenchmark::get_ts()
 {
-    struct timespec ts;
-    clock_gettime(CLOCK_REALTIME, &ts);
-    return ts.tv_sec * 1000000000 + ts.tv_nsec;
+    coil::TimeValue tv = coil::gettimeofday();
+    return tv.sec() * 1000000000 + tv.usec()*1000;
 }
 
 
