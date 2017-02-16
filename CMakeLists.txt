@@ -57,8 +57,8 @@ option(BUILD_RTCPCLVOXELFILTER "Build the RTCPCLVoxelFilter component" TRUE)
 option(BUILD_RTCPCLVIEWER "Build the RTCPCLViewer component" TRUE)
 option(BUILD_RTCRIVIEWER "Build the RTCRIViewer component" TRUE)
 
-add_definitions(${OPENRTM_DEFINITIONS} ${DDS_DEFINITIONS}
-    ${RTMDDS_DEFINITIONS} ${PCL_DEFINITIONS})
+add_definitions(${OPENRTM_CFLAGS})
+add_definitions(${OMNIORB_CFLAGS})
 include_directories(${PROJECT_SOURCE_DIR}/include)
 include_directories(${PROJECT_BINARY_DIR}/include)
 
