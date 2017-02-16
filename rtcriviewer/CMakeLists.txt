@@ -9,6 +9,7 @@ install(FILES ${comp_headers} DESTINATION ${INCLUDE_INSTALL_DIR}
 set(comp_srcs ${rtc_name}.cpp)
 include_directories(${IDL_HEADERS_DIR} ${DEPS_INCLUDE_DIRS}
     ${Boost_INCLUDE_DIRS})
+link_directories(${DEPS_LIBRARY_DIRS})
 add_library(${rtc_name} SHARED ${comp_srcs} ${IDL_TYPE_SOURCES})
 target_link_libraries(${rtc_name} rtcpcl_pointcloud_type ${DEPS_LIBRARIES})
 install(TARGETS ${rtc_name} RUNTIME DESTINATION ${LIB_INSTALL_DIR}

@@ -23,6 +23,7 @@ include_directories(${OPENRTM_INCLUDE_DIRS} ${PCL_INCLUDE_DIRS}
 
 # Compile the point cloud type library
 set(pc_lib rtcpcl_pointcloud_type)
+link_directories(${DEPS_LIBRARY_DIRS})
 add_library(${pc_lib} SHARED ${CORBA_IDL_ALL_SOURCES} ${DDS_IDL_ALL_SOURCES}
     pc_mgmt.cpp pc_traits.cpp)
 # Install the library so other components can use this type
