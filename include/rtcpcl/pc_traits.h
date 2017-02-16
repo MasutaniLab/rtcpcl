@@ -35,12 +35,17 @@
 #include <pcl/point_types.h>
 #include <stdexcept>
 
+#ifdef _EXPORTING
+  #define CLASS_DECLSPEC __declspec(dllexport)
+#else
+  #define CLASS_DECLSPEC __declspec(dllimport)
+#endif
 
 namespace RTCPCL
 {
     // Trait for any PCL point type
     template<typename PointT>
-    struct AnyPoint
+    struct CLASS_DECLSPEC AnyPoint
     {
         static bool const value = true;
     };
@@ -48,73 +53,73 @@ namespace RTCPCL
 
     // Trait for points with XYZ fields
     template<typename PointT>
-    struct HasXYZ
+    struct CLASS_DECLSPEC HasXYZ
     {
         static bool const value = false;
     };
 
     template<>
-    struct HasXYZ<pcl::PointXYZ>
+    struct CLASS_DECLSPEC HasXYZ<pcl::PointXYZ>
     {
         static bool const value = true;
     };
 
     template<>
-    struct HasXYZ<pcl::PointXYZI>
+    struct CLASS_DECLSPEC HasXYZ<pcl::PointXYZI>
     {
         static bool const value = true;
     };
 
     template<>
-    struct HasXYZ<pcl::PointXYZRGBA>
+    struct CLASS_DECLSPEC HasXYZ<pcl::PointXYZRGBA>
     {
         static bool const value = true;
     };
 
     template<>
-    struct HasXYZ<pcl::PointXYZRGB>
+    struct CLASS_DECLSPEC HasXYZ<pcl::PointXYZRGB>
     {
         static bool const value = true;
     };
 
     template<>
-    struct HasXYZ<pcl::InterestPoint>
+    struct CLASS_DECLSPEC HasXYZ<pcl::InterestPoint>
     {
         static bool const value = true;
     };
 
     template<>
-    struct HasXYZ<pcl::PointNormal>
+    struct CLASS_DECLSPEC HasXYZ<pcl::PointNormal>
     {
         static bool const value = true;
     };
 
     template<>
-    struct HasXYZ<pcl::PointXYZRGBNormal>
+    struct CLASS_DECLSPEC HasXYZ<pcl::PointXYZRGBNormal>
     {
         static bool const value = true;
     };
 
     template<>
-    struct HasXYZ<pcl::PointXYZINormal>
+    struct CLASS_DECLSPEC HasXYZ<pcl::PointXYZINormal>
     {
         static bool const value = true;
     };
 
     template<>
-    struct HasXYZ<pcl::PointWithRange>
+    struct CLASS_DECLSPEC HasXYZ<pcl::PointWithRange>
     {
         static bool const value = true;
     };
 
     template<>
-    struct HasXYZ<pcl::PointWithViewpoint>
+    struct CLASS_DECLSPEC HasXYZ<pcl::PointWithViewpoint>
     {
         static bool const value = true;
     };
 
     template<>
-    struct HasXYZ<pcl::PointWithScale>
+    struct CLASS_DECLSPEC HasXYZ<pcl::PointWithScale>
     {
         static bool const value = true;
     };
@@ -122,25 +127,25 @@ namespace RTCPCL
 
     // Trait for points with RGB fields
     template<typename PointT>
-    struct HasRGB
+    struct CLASS_DECLSPEC HasRGB
     {
         static bool const value = false;
     };
 
     /*template<>
-    struct HasRGB<pcl::PointXYZRGBA>
+    struct CLASS_DECLSPEC HasRGB<pcl::PointXYZRGBA>
     {
         static bool const value = true;
     };*/
 
     template<>
-    struct HasRGB<pcl::PointXYZRGB>
+    struct CLASS_DECLSPEC HasRGB<pcl::PointXYZRGB>
     {
         static bool const value = true;
     };
 
     template<>
-    struct HasRGB<pcl::PointXYZRGBNormal>
+    struct CLASS_DECLSPEC HasRGB<pcl::PointXYZRGBNormal>
     {
         static bool const value = true;
     };
@@ -148,31 +153,31 @@ namespace RTCPCL
 
     // Trait for points with a Normal field
     template<typename PointT>
-    struct HasNormals
+    struct CLASS_DECLSPEC HasNormals
     {
         static bool const value = false;
     };
 
     template<>
-    struct HasNormals<pcl::Normal>
+    struct CLASS_DECLSPEC HasNormals<pcl::Normal>
     {
         static bool const value = true;
     };
 
     template<>
-    struct HasNormals<pcl::PointNormal>
+    struct CLASS_DECLSPEC HasNormals<pcl::PointNormal>
     {
         static bool const value = true;
     };
 
     template<>
-    struct HasNormals<pcl::PointXYZRGBNormal>
+    struct CLASS_DECLSPEC HasNormals<pcl::PointXYZRGBNormal>
     {
         static bool const value = true;
     };
 
     template<>
-    struct HasNormals<pcl::PointXYZINormal>
+    struct CLASS_DECLSPEC HasNormals<pcl::PointXYZINormal>
     {
         static bool const value = true;
     };
@@ -180,13 +185,13 @@ namespace RTCPCL
 
     // Traits for points with curvature fields
     template<typename PointT>
-    struct HasCurvatures
+    struct CLASS_DECLSPEC HasCurvatures
     {
         static bool const value = false;
     };
 
     template<>
-    struct HasCurvatures<pcl::PrincipalCurvatures>
+    struct CLASS_DECLSPEC HasCurvatures<pcl::PrincipalCurvatures>
     {
         static bool const value = true;
     };
@@ -194,151 +199,151 @@ namespace RTCPCL
 
     // Traits for point names
     template<typename PointT>
-    struct PointName
+    struct CLASS_DECLSPEC PointName
     {
         static std::string value;
     };
 
     template<>
-    struct PointName<pcl::PointXYZ>
+    struct CLASS_DECLSPEC PointName<pcl::PointXYZ>
     {
         static std::string value; // xyz
     };
 
     template<>
-    struct PointName<pcl::PointXYZI>
+    struct CLASS_DECLSPEC PointName<pcl::PointXYZI>
     {
         static std::string value; // xyzi
     };
 
     template<>
-    struct PointName<pcl::PointXYZRGBA>
+    struct CLASS_DECLSPEC PointName<pcl::PointXYZRGBA>
     {
         static std::string value; // xyzrgba
     };
 
     template<>
-    struct PointName<pcl::PointXYZRGB>
+    struct CLASS_DECLSPEC PointName<pcl::PointXYZRGB>
     {
         static std::string value; // xyzrgb
     };
 
     template<>
-    struct PointName<pcl::PointXY>
+    struct CLASS_DECLSPEC PointName<pcl::PointXY>
     {
         static std::string value; // xy
     };
 
     template<>
-    struct PointName<pcl::InterestPoint>
+    struct CLASS_DECLSPEC PointName<pcl::InterestPoint>
     {
         static std::string value; // interestpoint
     };
 
     template<>
-    struct PointName<pcl::Normal>
+    struct CLASS_DECLSPEC PointName<pcl::Normal>
     {
         static std::string value; // normal
     };
 
     template<>
-    struct PointName<pcl::PointNormal>
+    struct CLASS_DECLSPEC PointName<pcl::PointNormal>
     {
         static std::string value; // normal
     };
 
     template<>
-    struct PointName<pcl::PointXYZRGBNormal>
+    struct CLASS_DECLSPEC PointName<pcl::PointXYZRGBNormal>
     {
         static std::string value; // xyzrgbnormal
     };
 
     template<>
-    struct PointName<pcl::PointXYZINormal>
+    struct CLASS_DECLSPEC PointName<pcl::PointXYZINormal>
     {
         static std::string value; // xyzinormal
     };
 
     template<>
-    struct PointName<pcl::PointWithRange>
+    struct CLASS_DECLSPEC PointName<pcl::PointWithRange>
     {
         static std::string value; // pointwithrange
     };
 
     template<>
-    struct PointName<pcl::PointWithViewpoint>
+    struct CLASS_DECLSPEC PointName<pcl::PointWithViewpoint>
     {
         static std::string value; // pointwithviewpoint
     };
 
     template<>
-    struct PointName<pcl::MomentInvariants>
+    struct CLASS_DECLSPEC PointName<pcl::MomentInvariants>
     {
         static std::string value; // momentinvariants
     };
 
     template<>
-    struct PointName<pcl::PrincipalRadiiRSD>
+    struct CLASS_DECLSPEC PointName<pcl::PrincipalRadiiRSD>
     {
         static std::string value; // principalradiirsd
     };
 
     template<>
-    struct PointName<pcl::Boundary>
+    struct CLASS_DECLSPEC PointName<pcl::Boundary>
     {
         static std::string value; // boundary
     };
 
     template<>
-    struct PointName<pcl::PrincipalCurvatures>
+    struct CLASS_DECLSPEC PointName<pcl::PrincipalCurvatures>
     {
         static std::string value; // principalcurvatures
     };
 
     template<>
-    struct PointName<pcl::PFHSignature125>
+    struct CLASS_DECLSPEC PointName<pcl::PFHSignature125>
     {
         static std::string value; // pfhsignature125
     };
 
     /*template<>
-    struct PointName<pcl::PPFSignature>
+    struct CLASS_DECLSPEC PointName<pcl::PPFSignature>
     {
         static std::string value; // ppfsignature
     };*/
 
     template<>
-    struct PointName<pcl::FPFHSignature33>
+    struct CLASS_DECLSPEC PointName<pcl::FPFHSignature33>
     {
         static std::string value; // fpfhsignature33
     };
 
     template<>
-    struct PointName<pcl::VFHSignature308>
+    struct CLASS_DECLSPEC PointName<pcl::VFHSignature308>
     {
         static std::string value; // vfhsignature308
     };
 
     template<>
-    struct PointName<pcl::Narf36>
+    struct CLASS_DECLSPEC PointName<pcl::Narf36>
     {
         static std::string value; // narf36
     };
 
     template<>
-    struct PointName<pcl::IntensityGradient>
+    struct CLASS_DECLSPEC PointName<pcl::IntensityGradient>
     {
         static std::string value; // intensitygradient
     };
 
     template<>
-    struct PointName<pcl::PointWithScale>
+    struct CLASS_DECLSPEC PointName<pcl::PointWithScale>
     {
         static std::string value; // pointwithscale
     };
 
     template<>
-    struct PointName<pcl::PointSurfel>
+    struct CLASS_DECLSPEC PointName<pcl::PointSurfel>
     {
         static std::string value; // pointsurfel
     };
@@ -381,7 +386,7 @@ namespace RTCPCL
 
 
     template<bool b>
-    struct create_type_impl
+    struct CLASS_DECLSPEC create_type_impl
     {
         template<typename TargetType>
         static boost::any do_it(std::string const& point_type)
@@ -393,7 +398,7 @@ namespace RTCPCL
     };
 
     template<>
-    struct create_type_impl<true>
+    struct CLASS_DECLSPEC create_type_impl<true>
     {
         template<typename TargetType>
         static boost::any do_it(std::string const& point_type)
