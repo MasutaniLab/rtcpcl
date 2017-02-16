@@ -6,7 +6,8 @@ install(FILES ${idl_files} DESTINATION ${INCLUDE_INSTALL_DIR}/idl
 if(CORBA_SUPPORT)
     message(STATUS "Including CORBA support")
     include(${PROJECT_SOURCE_DIR}/cmake/rtm_comp_corba_idl.cmake)
-    CORBA_COMPILE_IDL_FILES(${CMAKE_CURRENT_BINARY_DIR} ${idl_files})
+    CORBA_COMPILE_IDL_FILES(${CMAKE_CURRENT_BINARY_DIR}
+	${CMAKE_CURRENT_SOURCE_DIR}/${idl_files})
     set(IDL_HEADERS_DIR ${CORBA_IDL_HEADERS_DIR} PARENT_SCOPE)
 endif(CORBA_SUPPORT)
 
