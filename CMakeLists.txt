@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 2.6 FATAL_ERROR)
 
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
 project(rtcpcl)
 string(TOLOWER ${PROJECT_NAME} PROJECT_NAME_LOWER)
 
